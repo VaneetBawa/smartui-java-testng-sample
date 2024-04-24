@@ -56,6 +56,7 @@ public class SmartUISDKCloud {
         SmartUISnapshot.smartuiSnapshot(driver, "homepage");
         Thread.sleep(1000);
         System.out.println("Test Finished");
+        Status = "passed";
     }
 
     @AfterMethod
