@@ -25,7 +25,7 @@ public class SmartUISDKCloud {
     public void setup(Method m, ITestContext ctx) throws MalformedURLException {
         String username = System.getenv("LT_USERNAME") == null ? "Your LT Username" : System.getenv("LT_USERNAME");
         String authkey = System.getenv("LT_ACCESS_KEY") == null ? "Your LT AccessKey" : System.getenv("LT_ACCESS_KEY");
-        String hub = "@hub.lambdatest.com/wd/hub";
+        String hub = "@hub-virginia.lambdatest.com/wd/hub";
 
         DesiredCapabilities caps = new DesiredCapabilities();
         caps.setCapability("platform", "Catalina");
@@ -40,7 +40,7 @@ public class SmartUISDKCloud {
             caps.setCapability("github", github);
         }
         System.out.println(caps);
-        driver = new RemoteWebDriver(new URL("https://" + username + ":" + authkey + hub), caps);
+        driver = new RemoteWebDriver(new URL("http://" + username + ":" + authkey + hub), caps);
 
     }
 
