@@ -27,7 +27,7 @@ public class TestNGSmartUI {
     String authkey = System.getenv("LT_ACCESS_KEY") == null
       ? "Your LT AccessKey"
       : System.getenv("LT_ACCESS_KEY");
-    String hub = "@hub.lambdatest.com/wd/hub";
+    String hub = "@hub-virginia.lambdatest.com/wd/hub";
 
     DesiredCapabilities caps = new DesiredCapabilities();
     caps.setCapability("platform", "Windows 10");
@@ -47,7 +47,7 @@ public class TestNGSmartUI {
     System.out.println(caps);
     driver =
       new RemoteWebDriver(
-        new URL("https://" + username + ":" + authkey + hub),
+        new URL("http://" + username + ":" + authkey + hub),
         caps
       );
   }
