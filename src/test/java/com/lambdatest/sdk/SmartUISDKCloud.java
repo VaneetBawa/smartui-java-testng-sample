@@ -20,6 +20,7 @@ public class SmartUISDKCloud {
     private RemoteWebDriver driver;
     private String Status = "failed";
     private String githubURL = System.getenv("GITHUB_URL");
+    Tunnel t;
 
     @BeforeMethod
     public void setup(Method m, ITestContext ctx) throws MalformedURLException {
@@ -32,7 +33,16 @@ public class SmartUISDKCloud {
         caps.setCapability("browserName", "chrome");
         caps.setCapability("version", "latest");
         caps.setCapability("build", "TestNG With Java");
+        caps.setCapability("tunnel", true);
         caps.setCapability("name", m.getName() + " - " + this.getClass().getName());
+
+        t = new Tunnel();
+        HashMap<String, String> options = new HashMap<String, String>();
+        options.put("user", username);
+        options.put("key", authkey);
+
+        //start tunnel
+        t.start(options);
         
         if (githubURL != null) {
             Map<String, String> github = new HashMap<String, String>();
@@ -63,6 +73,7 @@ public class SmartUISDKCloud {
     public void tearDown() {
         driver.executeScript("lambda-status=" + Status);
         driver.quit();
+        t.stop();
     }
 
 }
